@@ -1,0 +1,14 @@
+.venv/
+.env
+.git/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+logs/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+chroma_db/
+memory_chroma_db/

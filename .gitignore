@@ -1,0 +1,32 @@
+# Environment configuration
+.env
+docker.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Application data
+*.db
+*.db-wal
+*.db-shm
+logs/
+chroma_db/
+
+# Local files
+.DS_Store
+
+# Generated test reports
+.coverage
+htmlcov/
+
+# Python package metadata
+*.egg-info/
+build/
+dist/
+
+# Local Chroma databases
+memory_chroma_db/

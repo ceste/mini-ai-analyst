@@ -1,0 +1,16 @@
+services:
+  mini-ai-analyst:
+    build: .
+    image: mini-ai-analyst:v2
+    container_name: mini-ai-analyst
+    network_mode: host
+    env_file:
+      - docker.env
+    environment:
+      DATA_DIR: /app/data
+    volumes:
+      - analyst_data:/app/data
+
+volumes:
+  analyst_data:
+    external: true

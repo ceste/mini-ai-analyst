@@ -1,0 +1,11 @@
+Mini AI Analyst Business Rules
+
+Revenue is calculated as quantity multiplied by price.
+
+A high-value product is a product with revenue
+greater than $1,000.
+
+The sales report is refreshed every morning at 7 AM.
+
+The company does not currently track individual
+customer purchases in the sales table.

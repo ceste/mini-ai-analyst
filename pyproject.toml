@@ -1,0 +1,38 @@
+[project]
+name = "mini-ai-analyst"
+version = "0.1.0"
+description = "A learning project for building reliable AI applications"
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+    "fastapi==0.142.2",
+    "uvicorn==0.54.0",
+    "pydantic-ai-slim==2.57.0",
+    "chromadb==1.5.9",
+    "requests==2.34.2",
+    "python-dotenv==1.2.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "pytest-cov==7.1.0",
+    "ruff==0.17.2",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
