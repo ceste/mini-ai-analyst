@@ -122,7 +122,6 @@ def admin_endpoint(
     }
 
 
-
 # def test_detect_authorization_regression(client, monkeypatch):
 #     from lesson12 import security_api
 
