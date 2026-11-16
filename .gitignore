@@ -30,3 +30,4 @@ dist/
 
 # Local Chroma databases
 memory_chroma_db/
+lesson12/.env
