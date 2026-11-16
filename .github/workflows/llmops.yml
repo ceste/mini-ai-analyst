@@ -1,0 +1,76 @@
+
+name: LLMOps Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lesson13/llmops/**"
+      - ".github/workflows/llmops.yml"
+
+  pull_request:
+    paths:
+      - "lesson13/llmops/**"
+      - ".github/workflows/llmops.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  llmops-validation:
+    name: Prompt Registry and Release Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install testing dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+
+      - name: Validate prompt registry and release gate
+        run: |
+          python -m pytest \
+            lesson13/llmops/test_prompt_registry.py \
+            lesson13/llmops/test_prompt_gate.py \
+            -v
+
+      - name: Check Python syntax
+        run: |
+          python -m compileall -q lesson13/llmops
+
+      - name: Validate evaluation dataset
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path(
+              "lesson13/llmops/evaluation/dataset.json"
+          )
+
+          cases = json.loads(path.read_text())
+
+          assert isinstance(cases, list)
+          assert len(cases) > 0
+
+          ids = [case["id"] for case in cases]
+          assert len(ids) == len(set(ids))
+
+          for case in cases:
+              assert isinstance(case["question"], str)
+              assert case["question"].strip()
+              assert isinstance(case["required_terms"], list)
+              assert isinstance(case["forbidden_terms"], list)
+
+          print(f"Validated {len(cases)} evaluation cases")
+          PY

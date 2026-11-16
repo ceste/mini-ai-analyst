@@ -39,8 +39,7 @@ lesson13/mlops/mlflow.db-*
 lesson13/mlops/mlruns/
 lesson13/mlops/mlartifacts/
 
-lesson13/mlops/mlflow.db
-lesson13/mlops/mlflow.db-*
-lesson13/mlops/mlruns/
-lesson13/mlops/mlartifacts/
+# Local LLM traces
+lesson13/llmops/traces/
+lesson13/llmops/evaluation/results.json
 
