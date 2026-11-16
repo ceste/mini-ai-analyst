@@ -1,0 +1,15 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir fastapi uvicorn
+
+RUN useradd --uid 999 --create-home appuser
+
+COPY lesson13/deployment/broken_api.py /app/broken_api.py
+
+USER appuser
+
+EXPOSE 8000
+
+CMD ["uvicorn", "broken_api:app", "--host", "0.0.0.0", "--port", "8000"]
