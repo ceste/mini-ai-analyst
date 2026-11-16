@@ -31,3 +31,16 @@ dist/
 # Local Chroma databases
 memory_chroma_db/
 lesson12/.env
+
+
+# MLflow local data
+lesson13/mlops/mlflow.db
+lesson13/mlops/mlflow.db-*
+lesson13/mlops/mlruns/
+lesson13/mlops/mlartifacts/
+
+lesson13/mlops/mlflow.db
+lesson13/mlops/mlflow.db-*
+lesson13/mlops/mlruns/
+lesson13/mlops/mlartifacts/
+

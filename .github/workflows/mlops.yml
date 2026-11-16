@@ -1,0 +1,50 @@
+name: MLOps Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lesson13/mlops/**"
+      - ".github/workflows/mlops.yml"
+
+  pull_request:
+    paths:
+      - "lesson13/mlops/**"
+      - ".github/workflows/mlops.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  model-validation:
+    name: Validate Model Promotion Policy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install testing dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+
+      - name: Run model validation tests
+        run: |
+          python -m pytest \
+            lesson13/mlops/test_model_gate.py \
+            -v
+
+      - name: Check Python syntax
+        run: |
+          python -m compileall -q \
+            lesson13/mlops/model_gate.py \
+            lesson13/mlops/promote_model.py \
+            lesson13/mlops/serve_model.py
